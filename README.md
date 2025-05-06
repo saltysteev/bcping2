@@ -1,4 +1,4 @@
-# bc-ping
+# bcping2
 A self-hosted ping monitoring script to check status of remote hosts/ip with a status page. Built using Flask & Python
 
 ## overview
@@ -8,4 +8,5 @@ Simply put, it pings (ICMP) a host IP or domain and displays the results in a si
 
 ## installation
 Install the dependencies with `pip install -e .`
+
 Run the app with `python app.py`
