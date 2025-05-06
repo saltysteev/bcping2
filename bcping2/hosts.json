@@ -1,0 +1,1 @@
+[{"name":"Example Host One","ip":"123.123.123.123","address":"123 Rainbow Road","phone":"800-555-1234","duration":6582,"alive":true,"attempt":0},{"name":"Example Host Two","ip":"69.69.69.69","address":"local","phone":"n/a","duration":1245,"alive":false,"attempt":0}]

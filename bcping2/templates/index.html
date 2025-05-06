@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Server Status</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        .grid {
+            grid-template-columns: 20% 80%;
+        }
+
+        :root {
+            --pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
+            --pico-font-size: 87.5%;
+            /* Original: 100% */
+            --pico-line-height: 1.25;
+            /* Original: 1.5 */
+            --pico-form-element-spacing-vertical: 0.5rem;
+            /* Original: 1rem */
+            --pico-form-element-spacing-horizontal: 1.0rem;
+            /* Original: 1.25rem */
+            --pico-border-radius: 0.375rem;
+            /* Original: 0.25rem */
+        }
+
+        @media (min-width: 576px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 106.25% */
+            }
+        }
+
+        @media (min-width: 768px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 112.5% */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 118.75% */
+            }
+        }
+
+        @media (min-width: 1280px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 125% */
+            }
+        }
+
+        @media (min-width: 1536px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 131.25% */
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            --pico-font-weight: 600;
+            /* Original: 700 */
+        }
+
+        article {
+            border: 1px solid var(--pico-muted-border-color);
+            /* Original doesn't have a border */
+            border-radius: calc(var(--pico-border-radius) * 2);
+            /* Original: var(--pico-border-radius) */
+        }
+
+        article>footer {
+            border-radius: calc(var(--pico-border-radius) * 2);
+            /* Original: var(--pico-border-radius) */
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header><h1>Server Status</h1></header>
+        <div class="grid">
+            <div>
+                <aside>
+                    <nav>
+                      <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('manage') }}">Manage Hosts</a></li>
+                        <li><a href="#">Event Log</a></li>
+                      </ul>
+                    </nav>
+                </aside>
+            </div>
+            <div>
+                <table class="striped">
+                    <thead>
+                        <tr><th>Status</th><th>Name</th><th>IP</th><th>Address</th><th>Phone</th><th>Duration</th></tr>
+                    </thead>
+                    {% for server in results %}
+                    <tr>
+                        <td style="color: {{ 'green' if server.alive else 'red' }}">{{ 'UP' if server.alive else 'DOWN' }}</td>
+                        <td>{{ server.name }}</td>
+                        <td>{{ server.ip }}</td>
+                        <td>{{ server.address }}</td>
+                        <td>{{ server.phone }}</td>
+                        <td>{{ server.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </main>
+    <script>
+        setTimeout(() => {
+            location.reload();
+        }, 5000);
+    </script>
+</body>
+</html>
